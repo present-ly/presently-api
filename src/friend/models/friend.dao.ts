@@ -1,9 +1,9 @@
 import { FriendModel } from './friend.model';
 
 export interface FriendDao {
-  getFriends(id: string): Promise<FriendModel[]>;
-  getFriend(id: string): Promise<FriendModel>;
-  addFriend(id: string, friend: FriendModel): Promise<FriendModel>;
-  editFriend(id: string, friend: FriendModel);
-  deleteFriend(id: string);
+  findAllFriendsForCurrentUser(userId: string): Promise<FriendModel[]>;
+  findFriendById(id: string): Promise<FriendModel>;
+  addFriendForCurrentUser(id: string, friend: FriendModel): Promise<FriendModel>;
+  updateFriendById(id: string, friend: FriendModel);
+  deleteFriendById(id: string);
 }
