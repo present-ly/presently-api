@@ -3,26 +3,25 @@ import { FriendDao } from './models/friend.dao';
 import { FriendModel } from './models/friend.model';
 
 @Injectable()
-export class FriendService implements FriendDao{
-  activateFriend(id: string) {
-  }
+export class FriendService implements FriendDao {
+  activateFriend(id: string) {}
 
-  async addFriend(id: string, friend: FriendModel): Promise<FriendModel> {
+  async addFriendForCurrentUser(
+    id: string,
+    friend: FriendModel,
+  ): Promise<FriendModel> {
     return undefined;
   }
 
-  deleteFriend(id: string) {
-  }
+  deleteFriendById(id: string) {}
 
-  editFriend(id: string, friend: FriendModel) {
-  }
+  updateFriendById(id: string, friend: FriendModel) {}
 
-  async getFriend(id: string): Promise<FriendModel> {
+  async findFriendById(id: string): Promise<FriendModel> {
     return undefined;
   }
 
-  async getFriends(id: string): Promise<FriendModel[]> {
+  async findAllFriendsForCurrentUser(userId: string): Promise<FriendModel[]> {
     return [];
   }
-
 }
