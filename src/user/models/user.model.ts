@@ -1,3 +1,5 @@
+import { EventModel } from 'src/event/models/event.model';
+
 export interface UserModel {
   id?: string;
   firstName: string;
@@ -6,6 +8,9 @@ export interface UserModel {
   phoneNumber?: string;
   password?: string;
   profilePictureUrl?: string;
-  confirmed: string;
+  isActive: boolean;
+  events: EventModel[];
+  confirmed?: string;
   interests?: string[];
+  friends?: string[];
 }

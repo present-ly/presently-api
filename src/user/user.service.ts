@@ -10,8 +10,15 @@ export class UserService implements UserDao {
     @InjectModel('User') private readonly userModel: Model<UserModel>,
   ) {}
   async createUser(user: UserModel) {
-    const newUser = new this.userModel(user);
-    return await newUser.save();
+    const doesUserExist = await this.userModel.findOne({ email: user.email });
+    if (!doesUserExist) {
+      const newUser = new this.userModel(user);
+      newUser.isActive = true;
+      return await newUser.save();
+    } else {
+      doesUserExist.isActive = true;
+      return doesUserExist;
+    }
   }
   async findUserById(id: string): Promise<UserModel> {
     return await this.userModel.findById(id);

@@ -28,8 +28,8 @@ export class AuthService implements AuthDao {
   async registerUser(user: UserModel): Promise<string> {
     user.id = uuid();
     user.password = await hash(user.password, 10);
-    await this.userService.createUser(user);
-    return await 'register called';
+    const newUser = await this.userService.createUser(user);
+    return await newUser;
   }
   confirmUser(email: string): void {}
   forgotPassword(email: string): void {}
