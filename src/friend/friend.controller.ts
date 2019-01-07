@@ -12,6 +12,7 @@ import {
 import { FriendDao } from './models/friend.dao';
 import { FriendService } from './friend.service';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import {FriendModel} from './models/friend.model';
 
 @Controller('user/:userId/friend')
 export class FriendController implements FriendDao {
@@ -26,7 +27,7 @@ export class FriendController implements FriendDao {
   async addFriendForCurrentUser(
     @Param('userId') id: string,
     @Body() friend: UserModel,
-  ): Promise<UserModel> {
+  ): Promise<FriendModel> {
     return this.friendService.addFriendForCurrentUser(id, friend);
   }
 
@@ -47,14 +48,14 @@ export class FriendController implements FriendDao {
     description:
       'Takes an ID and a Friend object with the changed information and updates the friend.',
   })
-  updateFriendById(@Param('id') id: string, @Body() friend: UserModel) {
+  updateFriendById(@Param('id') id: string, @Body() friend: FriendModel) {
     this.friendService.updateFriendById(id, friend);
   }
 
   @Get(':id')
   @ApiBearerAuth()
   @ApiOperation({ title: 'Get Friend', description: 'Returns a single friend' })
-  async findFriendById(@Param('id') id: string): Promise<UserModel> {
+  async findFriendById(@Param('id') id: string): Promise<FriendModel> {
     return this.friendService.findFriendById(id);
   }
 
@@ -66,7 +67,7 @@ export class FriendController implements FriendDao {
   })
   async findAllFriendsForCurrentUser(
     @Param('userId') id: string,
-  ): Promise<UserModel[]> {
+  ): Promise<FriendModel[]> {
     return this.friendService.findAllFriendsForCurrentUser(id);
   }
 }
